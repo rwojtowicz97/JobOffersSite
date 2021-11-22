@@ -8,6 +8,9 @@ class Company(models.Model):
     official_site = models.CharField(max_length=100)
     city = models.CharField(max_length=30)
     address = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.name
 
 
 class JobOffer(models.Model):
@@ -17,6 +20,8 @@ class JobOffer(models.Model):
     pub_date = models.DateTimeField('date published')
     finish_date = models.DateTimeField('date offer ends')
 
+    def __str__(self):
+        self.title
 
 
     
