@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-        {% for offer in offers %}
-            <h1>{{ offer.company }}</h1>
-            <h2>{{ offer.title }}</h2>
-            <p>{{ offer.description }}</p>
-            <p>{{ offer.pub_date }}</p>
-            <p>{{ finish_date }}</p>
-        {% endfor %}
-    </body>
-</html>
+{% extends "jobOffers/base.html" %}
+{% block content %}
+    {% for offer in offers %}
+        <h1>{{ offer.company }}</h1>
+        <h2>{{ offer.title }}</h2>
+        <p>{{ offer.description }}</p>
+        <p>{{ offer.pub_date }}</p>
+        <p>{{ finish_date }}</p>
+    {% endfor %}
+{% endblock content %}

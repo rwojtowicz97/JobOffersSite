@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        {% if title %}
-        <title>Job Offer - {{ title }}</title>
-        {% else %}
-        <title>Job Offer</title>
-        {% endif %}
-    </head>
-    <body>
-        <h1>about page</h1>
-    </body>
-</html>
+{% extends "jobOffers/base.html" %}
+{% block content %}
+    <h1>about page</h1>
+{% endblock %}
