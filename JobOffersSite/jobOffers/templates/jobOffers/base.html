@@ -19,18 +19,22 @@
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-purple fixed-top">
           <div class="container">
-            <a class="navbar-brand mr-4" href="/">Job Offers</a>
+            <a class="navbar-brand mr-4" href="{% url 'jobOffers:jobOffers-home' %}">Job Offers</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarToggle">
               <div class="navbar-nav mr-auto">
-                <a class="nav-item nav-link" href="/">Home</a>
-                <a class="nav-item nav-link" href="/about">About</a>
+                <a class="nav-item nav-link" href="{% url 'jobOffers:jobOffers-home' %}">Home</a>
+                <a class="nav-item nav-link" href="{% url 'jobOffers:jobOffers-about' %}">About</a>
               </div>
               <div class="navbar-nav" style="margin-left: auto;">
-                <a class="nav-item nav-link" href="/login">Login</a>
-                <a class="nav-item nav-link" href="/register">Register</a>
+                {% if user.is_authenticated %}
+                  <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                  <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                  <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                {% endif %}
               </div>
             </div>
           </div>
