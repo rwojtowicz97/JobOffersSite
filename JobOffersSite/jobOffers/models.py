@@ -1,27 +1,15 @@
 from django.db import models
-
-class Company(models.Model):
-    name = models.CharField(max_length=50)
-    description = models.CharField(max_length=150)
-    creation_date = models.DateTimeField('creation date')
-    mail = models.CharField(max_length=50)
-    official_site = models.CharField(max_length=100)
-    city = models.CharField(max_length=30)
-    address = models.CharField(max_length=100)
-    
-    def __str__(self):
-        return self.name
-
+from django.contrib.auth.models import User
 
 class JobOffer(models.Model):
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    creator = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=400)
     pub_date = models.DateTimeField('date published')
     finish_date = models.DateTimeField('date offer ends')
 
     def __str__(self):
-        self.title
+        return self.title or ''
 
 
     

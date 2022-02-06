@@ -1,0 +1,15 @@
+{% extends "jobOffers/base.html" %}
+{% block content %}
+    <article class="media content-section">
+        <img class="rounded-circle article-img" src="{{ object.creator.profile.image.url }}">
+        <div class="media-body">
+            <div class="article-metadata">
+                <small class="text-muted">Created by: <a href="#">{{ object.creator }}</a></small>
+                <p>{{ object.pub_date }}</p>
+            </div>
+                <h2 class="article-title">{{ object.title }}</h2>
+                <h1>{{ object.company }} </h1>
+                <p>{{ object.description }}</p>
+            </div>
+    </article>
+{% endblock content %}
