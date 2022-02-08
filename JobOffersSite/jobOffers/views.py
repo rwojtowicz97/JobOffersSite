@@ -2,8 +2,9 @@ from dataclasses import field
 from typing import List
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from jobOffers.models import JobOffer
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
 def home(request):
@@ -22,9 +23,40 @@ class JobOfferListView(ListView):
 class JobOfferDetailView(DetailView):
     model = JobOffer
 
-class JobOfferCreateView(CreateView):
+class JobOfferCreateView(LoginRequiredMixin, CreateView):
     model = JobOffer
     fields = ['title', 'description']
+
+    def form_valid(self, form):
+        form.instance.creator = self.request.user
+        return super().form_valid(form)
+
+
+class JobOfferUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = JobOffer
+    fields = ['title', 'description']
+
+    def form_valid(self, form):
+        form.instance.creator = self.request.user
+        return super().form_valid(form)
+    
+    def test_func(self):
+        jobOffer = self.get_object()
+        if self.request.user == jobOffer.creator:
+            return True
+        return False
+
+
+class JobOfferDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = JobOffer
+    success_url = '/'
+
+    def test_func(self):
+        jobOffer = self.get_object()
+        if self.request.user == jobOffer.creator:
+            return True
+        return False
+    
 
 
 def about(request):

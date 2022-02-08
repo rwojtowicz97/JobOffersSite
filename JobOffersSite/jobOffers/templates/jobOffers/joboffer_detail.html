@@ -11,5 +11,9 @@
                 <h1>{{ object.company }} </h1>
                 <p>{{ object.description }}</p>
             </div>
+            {% if object.creator == user %}
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'jobOffers:jobOffers-update' object.id %}">Update</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'jobOffers:jobOffers-delete' object.id %}">Delete</a>
+            {% endif %}
     </article>
 {% endblock content %}
