@@ -19,6 +19,7 @@ class JobOfferListView(ListView):
     template_name = 'jobOffers/home.html'
     context_object_name = 'offers'
     ordering = ['-pub_date']
+    paginate_by = 5
 
 class JobOfferDetailView(DetailView):
     model = JobOffer
