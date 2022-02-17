@@ -1,0 +1,12 @@
+version: '3.7'
+
+services:
+  app:
+    network_mode: host
+    build: 
+      context: .
+    volumes:
+      - ./JobOffersSite:/app
+    command: sh -c "python manage.py runserver"
+    environment:
+      - DEBUG=1
