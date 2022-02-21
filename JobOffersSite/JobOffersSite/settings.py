@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'jobOffers.apps.JoboffersConfig',
     'crispy_forms',
     "crispy_bootstrap5",
+    'django_prometheus',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,6 +47,11 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django_prometheus.middleware.PrometheusBeforeMiddleware',
+    # All your other middlewares go here, including the default
+    # middlewares like SessionMiddleware, CommonMiddleware,
+    # CsrfViewmiddleware, SecurityMiddleware, etc.
+    'django_prometheus.middleware.PrometheusAfterMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -81,7 +87,7 @@ WSGI_APPLICATION = 'JobOffersSite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django_prometheus.db.backends.postgresql',
         'NAME': 'joboffersdb',
         'USER': 'joboffersdb',
         'PASSWORD': 'test1234',

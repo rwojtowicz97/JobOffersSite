@@ -2,9 +2,11 @@ from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django_prometheus.models import ExportModelOperationsMixin
 
 
-class JobOffer(models.Model):
+
+class JobOffer(ExportModelOperationsMixin('joboffer'), models.Model):
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=400)
