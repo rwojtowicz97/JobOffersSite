@@ -7,6 +7,8 @@ services:
       context: .
     volumes:
       - ./JobOffersSite:/app
+      - ./media:/vol/web
     command: sh -c "python manage.py runserver"
     environment:
+      - SECRET_KEY=devsecretkey
       - DEBUG=1

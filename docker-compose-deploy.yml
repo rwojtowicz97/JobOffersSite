@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+  app:
+    network_mode: host
+    build:
+      context: .
+    volumes:
+    - static_data:/vol/web
+    environment:
+      - SECRET_KEY=dsamkdsamdkasdmskdmska
+      - ALLOWED_HOSTS=127.0.0.1, localhost
+
+  proxy:
+    network_mode: host
+    build:
+      context: ./nginx
+    volumes:
+      - static_data:/vol/static_data
+    depends_on:
+      - app
+
+volumes:
+  static_data:
